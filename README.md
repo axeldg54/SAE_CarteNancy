@@ -5,3 +5,4 @@
 - Dylan Baudson
 - Nathan Pierrot
 - Axel Dung
+- Corentin Froger
