@@ -1,10 +1,17 @@
 import java.rmi.RemoteException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import org.json.JSONArray;
 
 public class Converter implements ServiceConverter {
     private String password;
     private String username;
 
-    private final String url="charlemagne.iutnc.univ-lorraine.fr";
+    private final String url="jdbc:oracle:thin:@charlemagne.iutnc.univ-lorraine.fr:1521:infodb";
 
     Converter(String u, String p){
         this.password=p;
@@ -12,8 +19,19 @@ public class Converter implements ServiceConverter {
     }
     
     @Override
-    public String getData() throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getData'");
+    public JSON getAllRestaurantData() throws RemoteException, ClassNotFoundException, SQLException {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        Connection connection= DriverManager.getConnection(url, username, password);
+
+        Statement st=connection.createStatement();
+
+        ResultSet rs=st.executeQuery("SELECT * FROM RESTAURANT");
+
+        while(rs.next()){
+
+        }
+
+        return null;
     }
 }
