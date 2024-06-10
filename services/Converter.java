@@ -1,9 +1,5 @@
 import java.rmi.RemoteException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import org.json.*;
 
@@ -28,10 +24,21 @@ public class Converter implements ServiceConverter {
 
         ResultSet rs = st.executeQuery("SELECT * FROM RESTAURANT");
 
-        while (rs.next()) {
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount=metaData.getColumnCount();
 
+        JSONArray json=new JSONArray();
+
+        while (rs.next()) {
+            JSONObject jsonObject=new JSONObject();
+
+            for (int i = 1; i <= columnCount; i++) {
+                String columnName = metaData.getColumnName(i);
+                Object value = rs.getObject(i);
+                jsonObject.put(columnName, value);
+            }
         }
 
-        return null;
+        return json;
     }
 }
