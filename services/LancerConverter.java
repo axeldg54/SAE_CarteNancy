@@ -23,7 +23,7 @@ public class LancerConverter {
 
         Registry reg = null;
         try {
-            reg = LocateRegistry.getRegistry(port);
+            reg = LocateRegistry.createRegistry(port);
         } catch (RemoteException e) {
             System.out.println("service : Erreur lors de la recuperation de l'annuaire.");
             System.exit(1);
@@ -38,7 +38,7 @@ public class LancerConverter {
         }
 
         try {
-            rdServiceConverter.getAllRestaurantData();
+            System.out.println(rdServiceConverter.getAllRestaurantData());
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

@@ -5,5 +5,5 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public interface ServiceConverter extends Remote{
-    public MyJSON getAllRestaurantData() throws RemoteException, ClassNotFoundException, SQLException;
+    public String getAllRestaurantData() throws RemoteException, ClassNotFoundException, SQLException;
 }

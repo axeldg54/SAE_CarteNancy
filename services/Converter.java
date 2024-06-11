@@ -15,7 +15,7 @@ public class Converter implements ServiceConverter {
     }
 
     @Override
-    public MyJSON getAllRestaurantData() throws RemoteException, ClassNotFoundException, SQLException {
+    public String getAllRestaurantData() throws RemoteException, ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection connection = DriverManager.getConnection(url, username, password);
@@ -27,7 +27,7 @@ public class Converter implements ServiceConverter {
         ResultSetMetaData metaData = rs.getMetaData();
         int columnCount=metaData.getColumnCount();
 
-        MyJSON json=new MyJSON();
+        JSONArray json=new JSONArray();
 
         while (rs.next()) {
             JSONObject jsonObject=new JSONObject();
@@ -37,6 +37,6 @@ public class Converter implements ServiceConverter {
                 jsonObject.put(columnName, value);
             }
         }
-        return json;
+        return json.toString();
     }
 }
