@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carte</title>
+    <!-- Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Our CSS and JS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="module" src="./js/main.js"></script>
+</head>
+<body>
+<header>
+    <h1>Cartancy</h1>
+</header>
+<main>
+    <div id="map"></div>
+    <div id="nav">
+        <button id="nav_prev"><img class="nav_button" src="img/arrow.png"></button>
+        <div id="nav_info">
+
+        </div>
+        <button id="nav_next"><img class="nav_button" src="img/arrow.png"></button>
+    </div>
+</main>
+<footer>
+    <p>Projet réalisé par <a href="https://github.com/axeldg54/SAE_CarteNancy">Dylan, Nathan, Corentin, Antoine et
+        Axel</a></p>
+    <p>Données fournies par <a href="https://leafletjs.com/">Leaflet</a>, <a
+            href="https://transport.data.gouv.fr/gbfs/nancy/gbfs.json">transport.data.gouv</a></p>
+</footer>
+</body>
+</html>
