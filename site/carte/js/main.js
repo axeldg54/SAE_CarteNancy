@@ -6,4 +6,5 @@ window.onload = function() {
     carte.initMap();
     nav.initNav();
     map.displayMarkerVelib();
+    map.displayMarkerIncident();
 }

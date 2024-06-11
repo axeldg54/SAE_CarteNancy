@@ -37,17 +37,28 @@ export function initNav() {
 export async function initLegende(navInfo) {
     let stations = await data.getStationInfo();
     let nbStations = stations.data.stations.length;
+    let incidents = await data.getIncidents();
+    let nbIncidents = incidents.incidents.length;
+
     navInfo.innerHTML = `
     <h2>Légende</h2>
             <ul>
                 <li class="legend_item"><span class="legende-velo"></span> <img class="icon" src="./img/icon_velo3.png">
-                    <p> : <span class="span_gras">${nbStations}</span> stations de velib</p></li>
+                    <p><span class="span_moyen span_gras">${nbStations}</span> stations de velib</p></li>
                 <li class="legend_item"><span class="legende-incident"></span> <img class="icon" src="./img/icon_incident.png">
-                    <p> : <span class="span_gras">xx</span> incidents</p></li>
+                    <p><span class="span_moyen span_gras">${nbIncidents}</span> incidents</p></li>
                 <li class="legend_item"><span class="legende-restaurant"></span> <img class="icon" src="./img/icon_restaurant.png">
-                    <p> : <span class="span_gras">xx</span> restaurants</p></li>
+                    <p><span class="span_moyen span_gras">xx</span> restaurants</p></li>
             </ul>
             `;
+
+    // Evénement
+    for (let i = 0; i < navInfo.getElementsByTagName('li').length; i++) {
+        navInfo.getElementsByTagName('li')[i].addEventListener('click', () => {
+            let element = navInfo.getElementsByTagName('li')[i].getElementsByTagName('img')[0].src.split('/')[navInfo.getElementsByTagName('li')[i].getElementsByTagName('img')[0].src.split('/').length-1];
+            toggleShow(element);
+        });
+    }
 }
 
 export async function initMeteo(navInfo) {
@@ -104,9 +115,21 @@ export async function initMeteo(navInfo) {
 
         // Evénement
         meteoItem.addEventListener('click', () => {
-            alert("Clic sur la météo");
+            alert(`Il fait ${temperature}°C à ${heure} à Nancy`);
         });
 
         document.getElementById('meteo').appendChild(meteoItem);
     })
+}
+
+function toggleShow(element) {
+   for (let i = 0; i < document.getElementById('map').getElementsByTagName('img').length; i++) {
+       if (document.getElementById('map').getElementsByTagName('img')[i].src.includes(element)) {
+           if (document.getElementById('map').getElementsByTagName('img')[i].style.display === 'none') {
+               document.getElementById('map').getElementsByTagName('img')[i].style.display = 'block';
+           } else {
+               document.getElementById('map').getElementsByTagName('img')[i].style.display = 'none';
+           }
+       }
+   }
 }
