@@ -23,7 +23,7 @@ public class LancerConverter {
 
         Registry reg = null;
         try {
-            reg = LocateRegistry.createRegistry(port);
+            reg = LocateRegistry.getRegistry(port);
         } catch (RemoteException e) {
             System.out.println("service : Erreur lors de la recuperation de l'annuaire.");
             System.exit(1);
@@ -33,6 +33,7 @@ public class LancerConverter {
             reg.rebind("converter", rdServiceConverter);
         } catch (RemoteException e) {
             System.out.println("service : probleme enregistrement proxy");
+            System.out.println(e.getMessage());
             System.exit(1);
         }
 
