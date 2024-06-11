@@ -9,7 +9,7 @@ import java.net.InetSocketAddress;
 public class Main {
     public static void main(String[] args) throws IOException {
         HttpServer serveur = HttpServer.create(new InetSocketAddress(8000), 0);
-        serveur.createContext("/test", new HandlerServeur());
+        serveur.createContext("/incidents.json", new HandlerServeur());
         serveur.setExecutor(null); // creates a default executor
         serveur.start();
 

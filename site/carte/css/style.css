@@ -6,6 +6,7 @@
 
 ul {
     list-style-type: none;
+    width: 100%;
 }
 
 a {
@@ -57,9 +58,8 @@ main {
 #nav {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     height: 490px;
     width: 30%;
     background-color: white;
@@ -69,12 +69,20 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+#nav ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #nav #nav_info {
     width: 80%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0 40px;
+    align-items: center;
 }
 
 #nav h2 {
@@ -92,7 +100,13 @@ main {
     padding: 10px 40px;
     border-radius: 10px;
     margin-bottom: 10px;
-    width: 15rem;
+    width: 70%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.legend_item:hover {
+    background-color: #dcdcdc;
 }
 
 .legend_item img {
@@ -138,10 +152,6 @@ main {
     margin-right: 10px;
 }
 
-.span_gras {
-    font-weight: bold;
-}
-
 /** FOOTER **/
 footer {
     position: fixed;
@@ -176,7 +186,13 @@ footer {
     color: black;
     padding: 10px 40px;
     border-radius: 10px;
-    width: 15rem;
+    width: 70%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.meteo_item:hover {
+    background-color: #dcdcdc;
 }
 
 .meteo_item img {
@@ -197,7 +213,17 @@ footer {
     font-size: 2.5em;
 }
 
+/** SPAN **/
+
 .span_petit {
     font-size: 0.8em;
     color: grey;
+}
+
+.span_gras {
+    font-weight: bold;
+}
+
+.span_moyen {
+    font-size: 1.2em;
 }
