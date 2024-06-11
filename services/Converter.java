@@ -36,6 +36,7 @@ public class Converter implements ServiceConverter {
                 Object value = rs.getObject(i);
                 jsonObject.put(columnName, value);
             }
+            json.put(jsonObject);
         }
         return json.toString();
     }
