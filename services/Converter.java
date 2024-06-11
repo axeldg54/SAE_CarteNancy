@@ -31,14 +31,12 @@ public class Converter implements ServiceConverter {
 
         while (rs.next()) {
             JSONObject jsonObject=new JSONObject();
-
             for (int i = 1; i <= columnCount; i++) {
                 String columnName = metaData.getColumnName(i);
                 Object value = rs.getObject(i);
                 jsonObject.put(columnName, value);
             }
         }
-
         return json;
     }
 }
