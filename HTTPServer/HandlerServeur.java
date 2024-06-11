@@ -2,7 +2,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -11,15 +10,15 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
-class MyHandler implements HttpHandler {
+class HandlerServeur implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         System.out.println("Requete à " + exchange.getLocalAddress());
-//        String requestMethod = exchange.getRequestMethod();
-//        String query = exchange.getRequestURI().getQuery();
+        // String requestMethod = exchange.getRequestMethod();
+        // String query = exchange.getRequestURI().getQuery();
 
-        //InputStream is = exchange.getRequestBody();
-        //os.read(is); // .. read the request body
+        // InputStream is = exchange.getRequestBody();
+        // os.read(is); // .. read the request body
 
         HttpClient client = //HttpClient.newHttpClient();
         HttpClient.newBuilder()
@@ -39,15 +38,16 @@ class MyHandler implements HttpHandler {
 
         try {
             HttpResponse<String> r = client.send(request, HttpResponse.BodyHandlers.ofString());
-//            System.out.println(r.statusCode());
-//            System.out.println(r.body());
-            String encoding = "UTF-8";
+            // System.out.println(r.statusCode());
+            // System.out.println(r.body());
+            String encoding = "UTF-8"; // Peut-être inutile pour du JSON
             String reponse = r.body();
             exchange.getResponseHeaders().set("Content-Type", "application/json; charset=" + encoding);
+            // C'est cette ligne qui permet d'autoriser le CORS
             exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 
             byte[] bytes = reponse.getBytes(StandardCharsets.UTF_8);
-            exchange.sendResponseHeaders(200, bytes.length);
+            exchange.sendResponseHeaders(200, bytes.length); // 200 = OK
             System.out.println(reponse);
 
             OutputStream os = exchange.getResponseBody();
