@@ -43,9 +43,12 @@ header {
 /** MAIN **/
 main{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 1rem;
 }
 
-#diagbd{
+.boxDiag{
     background-color: white;
     margin: 1rem;
     padding: 1rem;
@@ -54,19 +57,24 @@ main{
     flex-direction: column;
 }
 
-#titre-diag-bd{
-
-}
-
-#diag-bd{
-    margin: 1rem;
-    border-radius: 1rem;
-    transition: all 1s ease;
+.titre-diag{
     align-self: center;
 }
 
-#diag-bd:hover{
-    transform: scale(1.1);
+.img-diag{
+    margin: 1rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    align-self: center;
+}
+
+.img-diag:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.desc-diag{
+    align-self: center;
 }
 
 /** FOOTER **/
