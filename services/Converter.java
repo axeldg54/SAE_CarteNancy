@@ -48,7 +48,7 @@ public class Converter implements ServiceConverter {
         Connection connection = DriverManager.getConnection(url, username, password);
 
         String requestString=
-        "select nom, nbResMax, nbResMax-(select count(id) from RESERVATION "+
+        "select nom, nbResMax, nbResMax-(select sum(nbPersonnes) from RESERVATION "+
         "where IDRESTAURANT = ? "+
         "and DATERES = ?) as restant "+
         "from RESTAURANT "+
@@ -74,5 +74,26 @@ public class Converter implements ServiceConverter {
             json.put(columnName, value);
         }
         return json.toString();
+    }
+
+    @Override
+    public void reserve(String idRes, String dateRes, String nom, String prenom, String numTel, String nbPersonnes) throws RemoteException, ClassNotFoundException, SQLException {          
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        Connection connection = DriverManager.getConnection(url, username, password);
+        
+        String requestString=
+        "INSERT INTO RESERVATION(idRestaurant, dateres, nom, prenom, numtel, nbPersonnes) "+
+        "VALUES(?,To_Date(?, 'DD/MM/YYYY'),?,?,?,?)";
+        
+        PreparedStatement st=connection.prepareStatement(requestString);
+        st.setString(1, idRes);
+        st.setString(2, dateRes);
+        st.setString(3, nom);
+        st.setString(4, prenom);
+        st.setString(5, numTel);
+        st.setString(6, nbPersonnes);
+        
+        st.executeUpdate();
     }
 }
