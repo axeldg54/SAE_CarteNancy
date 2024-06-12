@@ -8,6 +8,14 @@ body{
     background-color: #efefef;
 }
 
+.none{
+    display: none;
+}
+
+.block{
+    display: block;
+}
+
 /** HEADER **/
 header {
     top: 0;
@@ -75,6 +83,37 @@ main{
 
 .desc-diag{
     align-self: center;
+}
+
+#fond{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    backdrop-filter: blur(0.2rem);
+}
+
+#img-container{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-27rem); /* taille de l'image + padding*/
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 5rem rgba(0, 0, 0, 0.8);
+
+}
+
+#bigImg{
+    width: 50rem;
+    height: auto;
+    border-radius: 1rem;
+    /*box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.8);*/
+
 }
 
 /** FOOTER **/
