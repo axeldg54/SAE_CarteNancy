@@ -39,6 +39,7 @@ header {
 
 /** MAP **/
 main {
+    z-index: 2;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -226,4 +227,179 @@ footer {
 
 .span_moyen {
     font-size: 1.2em;
+}
+
+/** RESTAURANT RESERVATION **/
+
+.reserver {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #191923;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: transparent;
+    transition: background 0.2s;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.reserver:hover {
+    background: #484747;
+}
+
+.noter {
+    position: absolute;
+    bottom: 5px;
+    right: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #4fbb3f;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: transparent;
+    transition: background 0.2s;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.noter:hover {
+    background: #6aec5a;
+}
+
+/** LEAFLET **/
+
+.popup-restaurant {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+/** FLOU **/
+
+#flou {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+/** FORMULAIRE **/
+
+#form {
+    z-index: 4;
+    position: absolute;
+    top: 25%;
+    left: -100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s;
+}
+
+#form .image {
+    background: url('https://toohotel.com/wp-content/uploads/2022/09/TOO_restaurant_Panoramique_vue_Paris_nuit_v2-scaled.jpg') no-repeat center center;
+    border-radius: 10px 0 0 10px;
+    height: 100%;
+    width: 40%;
+}
+
+#form .formulaire {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+#form .spans {
+    position: absolute;
+    top: 5px;
+    left: 41%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: auto;
+}
+
+#form .span_restaurant {
+    font-size: 0.7em;
+    background-color: #00005b;
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#form .span_complet {
+    font-size: 0.7em;
+    background-color: #5b0000;
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+#form .span_disponible {
+    font-size: 0.7em;
+    background-color: #005b00;
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+#form .formulaire {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    height: 70%;
+}
+
+#form .formulaire input {
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#form .formulaire button {
+    background-color: #191923;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 83%;
+    height: auto;
+}
+
+#form .span_place {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 1em;
+    color: gray;
 }
