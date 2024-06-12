@@ -40,4 +40,39 @@ public class Converter implements ServiceConverter {
         }
         return json.toString();
     }
+
+    @Override
+    public String getAvailable(String id, String date) throws RemoteException, ClassNotFoundException, SQLException {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        Connection connection = DriverManager.getConnection(url, username, password);
+
+        String requestString=
+        "select nom, nbResMax, nbResMax-(select count(id) from RESERVATION "+
+        "where IDRESTAURANT = ? "+
+        "and DATERES = ?) as restant "+
+        "from RESTAURANT "+
+        "where id = ?";
+
+        PreparedStatement st=connection.prepareStatement(requestString);
+        st.setString(1, id);
+        st.setString(2, date);
+        st.setString(3, id);
+
+        ResultSet rs = st.executeQuery();
+
+        JSONObject json=new JSONObject();
+
+        rs.next();
+        
+        ResultSetMetaData metaData=rs.getMetaData();
+        int columnCount=metaData.getColumnCount();
+
+        for (int i = 1; i <= columnCount; i++) {
+            String columnName = metaData.getColumnName(i);
+            Object value = rs.getObject(i);
+            json.put(columnName, value);
+        }
+        return json.toString();
+    }
 }

@@ -37,8 +37,10 @@ public class LancerConverter {
             System.exit(1);
         }
 
+        //////TEST/////
+        /* 
         try {
-            System.out.println(rdServiceConverter.getAllRestaurantData());
+            System.out.println(rdServiceConverter.getAvailable("1", "23/07/2024"));
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -46,5 +48,8 @@ public class LancerConverter {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        */
+        ////////
+    
     }
 }
