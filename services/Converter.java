@@ -48,10 +48,9 @@ public class Converter implements ServiceConverter {
         Connection connection = DriverManager.getConnection(url, username, password);
 
         String requestString=
-        "select nbPlaces-(select count(id) restant, nbResMax, nom from RESERVATION "+
+        "select nom, nbResMax, nbResMax-(select count(id) from RESERVATION "+
         "where IDRESTAURANT = ? "+
-        "and DATERES = ?) "+
-        "as nbPlacesRestantes "+
+        "and DATERES = ?) as restant "+
         "from RESTAURANT "+
         "where id = ?";
 
@@ -62,7 +61,7 @@ public class Converter implements ServiceConverter {
 
         ResultSet rs = st.executeQuery();
 
-        JSONObject json=new JSONObhect();
+        JSONObject json=new JSONObject();
 
         rs.next();
         
