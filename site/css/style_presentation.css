@@ -1,0 +1,84 @@
+/** GENERAL **/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #efefef;
+}
+
+/** HEADER **/
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+#retour{
+    position: absolute;
+    left: 1rem;
+    top: 1.2rem;
+    font-weight: bold;
+}
+
+#back{
+    height: 2rem;
+    width: 2rem;
+}
+
+#titre{
+    align-items: center;
+}
+
+/** MAIN **/
+main{
+    display: flex;
+}
+
+#diagbd{
+    background-color: white;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#titre-diag-bd{
+
+}
+
+#diag-bd{
+    margin: 1rem;
+    border-radius: 1rem;
+    transition: all 1s ease;
+    align-self: center;
+}
+
+#diag-bd:hover{
+    transform: scale(1.1);
+}
+
+/** FOOTER **/
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
