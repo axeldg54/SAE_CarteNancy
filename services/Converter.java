@@ -41,7 +41,6 @@ public class Converter implements ServiceConverter {
         return json.toString();
     }
 
-
     @Override
     public String getAvailable(String id, String date) throws RemoteException, ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
