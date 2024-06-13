@@ -1,13 +1,13 @@
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
-class HandlerAllReservation implements  HttpHandler {
-    public ServiceConverter converter;
+class HandlerAllReservation extends  HandlerGeneric {
+    private ServiceConverter converter;
+
     HandlerAllReservation(ServiceConverter conv){
         super();
         this.converter=conv;

@@ -9,5 +9,5 @@ public interface ServiceConverter extends Remote{
 
     public String getAllReservationData() throws RemoteException, ClassNotFoundException, SQLException;
 
-    public void reserve(String idRes, String dateRes, String nom, String prenom, String numTel, String nbPersonnes) throws RemoteException, ClassNotFoundException, SQLException;
+    public void reserve(int idRes, String dateRes, String nom, String prenom, String numTel, int nbPersonnes) throws RemoteException, ClassNotFoundException, SQLException;
 }

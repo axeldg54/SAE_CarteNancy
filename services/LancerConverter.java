@@ -2,11 +2,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.SQLException;
 
 public class LancerConverter {
     public static void main(String[] args) {
-        int port = 3333;
+        int port = 1090;
         if (args.length > 0) port = Integer.parseInt(args[0]);
 
         ServiceConverter serviceConverter = new Converter("baudson4u", "rootroot");
@@ -36,20 +35,7 @@ public class LancerConverter {
             System.out.println(e.getMessage());
             System.exit(1);
         }
-
-        //////TEST/////
-        /* 
-        try {
-            System.out.println(rdServiceConverter.getAvailable("1", "23/07/2024"));
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        */
-        ////////
-    
+        
+        System.out.print("Service lancé");
     }
 }

@@ -28,7 +28,8 @@ public class LancerAPI {
         try {
             converter=(ServiceConverter) reg.lookup("converter");
         } catch (NotBoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Service introuvable");
+            System.exit(1);
         }
 
         HandlerAllRestaurant handlerAll=new HandlerAllRestaurant(converter);
@@ -36,10 +37,10 @@ public class LancerAPI {
         HandlerReserve handlerReserve=new HandlerReserve(converter);
         HandlerAllReservation handlerAllReservation=new HandlerAllReservation(converter);
 
-        server.createContext("/all", handlerAll);
+        server.createContext("/restaurants", handlerAll);
         server.createContext("/remaining", handlerRemaining);
         server.createContext("/reserve", handlerReserve);
-        server.createContext("/all_reservation", handlerAllReservation);
+        server.createContext("/reservations", handlerAllReservation);
         
 
         server.setExecutor(null); // creates a default executor

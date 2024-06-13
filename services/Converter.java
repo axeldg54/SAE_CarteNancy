@@ -100,7 +100,7 @@ public class Converter implements ServiceConverter {
     }
 
     @Override
-    public void reserve(String idRes, String dateRes, String nom, String prenom, String numTel, String nbPersonnes) throws RemoteException, ClassNotFoundException, SQLException {
+    public void reserve(int idRes, String dateRes, String nom, String prenom, String numTel, int nbPersonnes) throws RemoteException, ClassNotFoundException, SQLException {        
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection connection = DriverManager.getConnection(url, username, password);
@@ -110,12 +110,12 @@ public class Converter implements ServiceConverter {
         "VALUES(?,To_Date(?, 'DD/MM/YYYY'),?,?,?,?)";
         
         PreparedStatement st=connection.prepareStatement(requestString);
-        st.setString(1, idRes);
+        st.setInt(1, idRes);
         st.setString(2, dateRes);
         st.setString(3, nom);
         st.setString(4, prenom);
         st.setString(5, numTel);
-        st.setString(6, nbPersonnes);
+        st.setInt(6, nbPersonnes);
         
         st.executeUpdate();
     }
