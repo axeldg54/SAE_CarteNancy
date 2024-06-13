@@ -1,10 +1,11 @@
 import * as carte from './carte.js';
-import * as map from './map.js';
+import * as mapDisplay from './mapDisplay.js';
 import * as nav from './nav.js';
 
-window.onload = function() {
+window.onload = async function () {
     carte.initMap();
     nav.initNav();
-    map.displayMarkerVelib();
-    map.displayMarkerIncident();
+    await mapDisplay.displayMarkerVelib();
+    await mapDisplay.displayMarkerIncident();
+    await mapDisplay.displayMarkerRestaurant();
 }

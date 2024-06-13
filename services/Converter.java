@@ -100,7 +100,7 @@ public class Converter implements ServiceConverter {
     }
 
     @Override
-    public void reserve(String idRes, String dateRes, String nom, String prenom, String numTel, String nbPersonnes) throws RemoteException, ClassNotFoundException, SQLException {          
+    public void reserve(String idRes, String dateRes, String nom, String prenom, String numTel, String nbPersonnes) throws RemoteException, ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection connection = DriverManager.getConnection(url, username, password);
