@@ -34,10 +34,12 @@ public class LancerAPI {
         HandlerAllRestaurant handlerAll=new HandlerAllRestaurant(converter);
         HandlerRemaining handlerRemaining=new HandlerRemaining(converter);
         HandlerReserve handlerReserve=new HandlerReserve(converter);
+        HandlerAllReservation handlerAllReservation=new HandlerAllReservation(converter);
 
         server.createContext("/all", handlerAll);
         server.createContext("/remaining", handlerRemaining);
         server.createContext("/reserve", handlerReserve);
+        server.createContext("/all_reservation", handlerAllReservation);
         
 
         server.setExecutor(null); // creates a default executor

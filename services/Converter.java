@@ -73,6 +73,33 @@ public class Converter implements ServiceConverter {
     }
 
     @Override
+    public String getAllReservationData() throws RemoteException, ClassNotFoundException, SQLException {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        Connection connection = DriverManager.getConnection(url, username, password);
+
+        Statement st = connection.createStatement();
+
+        ResultSet rs = st.executeQuery("SELECT * FROM Reservation");
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount=metaData.getColumnCount();
+
+        JSONArray json=new JSONArray();
+
+        while (rs.next()) {
+            JSONObject jsonObject=new JSONObject();
+            for (int i = 1; i <= columnCount; i++) {
+                String columnName = metaData.getColumnName(i);
+                Object value = rs.getObject(i);
+                jsonObject.put(columnName, value);
+            }
+            json.put(jsonObject);
+        }
+        return json.toString();
+    }
+
+    @Override
     public void reserve(String idRes, String dateRes, String nom, String prenom, String numTel, String nbPersonnes) throws RemoteException, ClassNotFoundException, SQLException {          
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
