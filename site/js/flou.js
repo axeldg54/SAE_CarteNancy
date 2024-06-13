@@ -7,7 +7,7 @@ export function show() {
     });
 }
 
-function hide() {
+export function hide() {
     let form = document.getElementById('form');
     form.style.left = "-100%";
     let flou = document.getElementById('flou');

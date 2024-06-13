@@ -45,6 +45,10 @@ export async function initPopupIncident(incident, lat, long) {
 }
 
 export async function initPopupRestaurant(restaurant) {
+    let etoiles = '';
+    for (let i = 0; i < Math.round(restaurant.NOTE); i++) {
+        etoiles += '⭐';
+    }
     // On crée le contenu du popup
     let content = document.createElement('div');
     content.classList.add('popup-restaurant');
@@ -54,7 +58,7 @@ export async function initPopupRestaurant(restaurant) {
             <li>Adresse: <span class="span_gras">${restaurant.ADRESSE}</span></li>
             <li>Téléphone: <span class="span_gras">${restaurant.TELEPHONE}</span></li>
             <li>Capacité: <span class="span_gras">${restaurant.NBRESMAX}</span></li>
-            <li>Note: <span class="span_gras">${restaurant.NOTE}</span></li>
+            <li>Note: <span class="span_gras">${etoiles}</span></li>
         </ul>
     `;
 
@@ -63,7 +67,7 @@ export async function initPopupRestaurant(restaurant) {
     button.classList.add('reserver');
     button.innerHTML = "Réserver";
     button.addEventListener('click', () => {
-        reservation.display(restaurant);
+        reservation.display(restaurant, new Date(), 0);
     });
     content.appendChild(button);
 

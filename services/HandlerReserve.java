@@ -20,37 +20,51 @@ class HandlerReserve implements  HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         System.out.println("Requete de " + exchange.getLocalAddress());
 
-        boolean res=true;
+        boolean res = true;
+        String message = "Reservation success";
 
-        //Obtention des params donnés dans le query string
-        Map<String, String> parameters=queryToMap(exchange.getRequestURI().getQuery()); 
+        // Obtention des params donnés dans le query string
+        Map<String, String> parameters = queryToMap(exchange.getRequestURI().getQuery());
+        System.out.println("Paramètres de la requête: " + parameters);
 
-        String jsonString = null;
         try {
             converter.reserve(parameters.get("idRestaurant"), parameters.get("dateRes"), parameters.get("nom"), parameters.get("prenom"), parameters.get("numTel"), parameters.get("nbPersonnes"));
         } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
-            res=false;
+            res = false;
+            message = "Class not found exception";
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            res=false;
+            res = false;
+            message = "SQL exception";
         }
+
         String encoding = "UTF-8"; // Peut-être inutile pour du JSON
 
         exchange.getResponseHeaders().set("Content-Type", "application/json; charset=" + encoding);
         // C'est cette ligne qui permet d'autoriser le CORS
         exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 
-        JSONObject json=new JSONObject();
+        JSONObject json = new JSONObject();
         json.put("result", res);
+        json.put("message", message);
 
         byte[] bytes = json.toString().getBytes(StandardCharsets.UTF_8);
         exchange.sendResponseHeaders(200, bytes.length); // 200 = OK
 
-        OutputStream os = exchange.getResponseBody();
-        os.write(bytes);
-        os.close();
+        System.out.println("Envoi de la réponse...");
+
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(bytes);
+        } catch (IOException e) {
+            System.out.println("Erreur lors de l'envoi de la réponse: " + e.getMessage());
+        }
+
+        System.out.println("Réponse envoyée.");
     }
+
+
+
 
     public Map<String, String> queryToMap(String query) {
         if(query == null) {

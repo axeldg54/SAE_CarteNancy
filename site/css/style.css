@@ -155,6 +155,7 @@ main {
 
 /** FOOTER **/
 footer {
+    z-index: 2;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -278,7 +279,7 @@ footer {
 .popup-restaurant {
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 }
 
 /** FLOU **/
@@ -317,7 +318,8 @@ footer {
 }
 
 #form .image {
-    background: url('https://toohotel.com/wp-content/uploads/2022/09/TOO_restaurant_Panoramique_vue_Paris_nuit_v2-scaled.jpg') no-repeat center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 10px 0 0 10px;
     height: 100%;
     width: 40%;
