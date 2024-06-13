@@ -48,11 +48,7 @@ public class Converter implements ServiceConverter {
         Connection connection = DriverManager.getConnection(url, username, password);
 
         String requestString=
-        "select nom, nbResMax, nbResMax-(select sum(nbPersonnes) from RESERVATION "+
-        "where IDRESTAURANT = ? "+
-        "and DATERES = ?) as restant "+
-        "from RESTAURANT "+
-        "where id = ?";
+        "SELECT nom, nbResMax, nbResMax - COALESCE((SELECT SUM(nbPersonnes) FROM RESERVATION WHERE IDRESTAURANT = ? AND DATERES = ?), 0) AS restant FROM RESTAURANT WHERE id = ?";
 
         PreparedStatement st=connection.prepareStatement(requestString);
         st.setString(1, id);
