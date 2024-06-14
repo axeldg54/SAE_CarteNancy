@@ -11,7 +11,6 @@ import java.util.Map;
 import org.json.JSONObject;
 
 class HandlerReserve extends  HandlerGeneric { 
-    private ServiceConverter converter;
     HandlerReserve(ServiceConverter conv){
         super();
         this.converter=conv;

@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 class HandlerAllRestaurant extends HandlerGeneric {
-    private ServiceConverter converter;
-
     HandlerAllRestaurant(ServiceConverter conv){
         super();
         this.converter=conv;

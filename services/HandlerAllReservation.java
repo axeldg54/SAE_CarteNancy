@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 class HandlerAllReservation extends  HandlerGeneric {
-    private ServiceConverter converter;
-
     HandlerAllReservation(ServiceConverter conv){
         super();
         this.converter=conv;

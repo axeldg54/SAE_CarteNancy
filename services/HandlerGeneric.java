@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 abstract class HandlerGeneric implements  HttpHandler {
-    //protected ServiceConverter converter;
+    protected ServiceConverter converter;
     
     @Override
     public abstract void handle(HttpExchange exchange) throws IOException;
