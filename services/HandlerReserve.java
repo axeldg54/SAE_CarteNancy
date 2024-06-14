@@ -41,13 +41,10 @@ class HandlerReserve extends  HandlerGeneric {
     
             try {
                 converter.reserve(idRestaurant, dateRes, nom, prenom, numTel, nbPersonnes);
-            } catch (ClassNotFoundException e) {
+            } catch (ClassNotFoundException | SQLException e) {
                 System.out.println(e.getMessage());
                 res = false;
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-                res = false;
-            }
+            } 
 
             JSONObject json=new JSONObject();
             json.put("result", res);

@@ -17,13 +17,10 @@ class HandlerAllRestaurant extends HandlerGeneric {
         String jsonString = null;
         try {
             jsonString = converter.getAllRestaurantData();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Erreur class");
-        } catch (SQLException e) {
-            System.out.println("Erreur SQL");
-        }
-
-        System.out.println(jsonString);
-        sendResponse(exchange, 200, jsonString);
+            sendResponse(exchange, 200, jsonString);
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Erreur interne");
+            sendResponse(exchange, 500, "Internal server error");
+        } 
     }
 }

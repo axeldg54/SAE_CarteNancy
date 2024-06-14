@@ -1,4 +1,5 @@
 import com.sun.net.httpserver.HttpExchange;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
@@ -20,12 +21,10 @@ class HandlerRemaining extends HandlerGeneric {
         String jsonString = null;
         try {
             jsonString = converter.getAvailable(parameters.get("id"), parameters.get("date"));
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            sendResponse(exchange, 200, jsonString);
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Erreur interne");
+            sendResponse(exchange, 500, "Internal server error");    
         }
-
-        sendResponse(exchange, 200, jsonString);
     }
 }

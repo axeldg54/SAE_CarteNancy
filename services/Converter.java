@@ -19,6 +19,7 @@ public class Converter implements ServiceConverter {
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection connection = DriverManager.getConnection(url, username, password);
+        connection.setAutoCommit(true);
 
         Statement st = connection.createStatement();
 
@@ -46,6 +47,7 @@ public class Converter implements ServiceConverter {
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection connection = DriverManager.getConnection(url, username, password);
+        connection.setAutoCommit(true);
 
         String requestString=
         "SELECT nom, nbResMax, nbResMax - COALESCE((SELECT SUM(nbPersonnes) FROM RESERVATION WHERE IDRESTAURANT = ? AND DATERES = ?), 0) AS restant FROM RESTAURANT WHERE id = ?";
@@ -77,6 +79,7 @@ public class Converter implements ServiceConverter {
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection connection = DriverManager.getConnection(url, username, password);
+        connection.setAutoCommit(true);
 
         Statement st = connection.createStatement();
 
@@ -104,6 +107,7 @@ public class Converter implements ServiceConverter {
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection connection = DriverManager.getConnection(url, username, password);
+        connection.setAutoCommit(true);
         
         String requestString=
         "INSERT INTO RESERVATION(idRestaurant, dateres, nom, prenom, numtel, nbPersonnes) "+
