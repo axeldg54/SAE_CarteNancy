@@ -5,14 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
-import org.json.JSONObject;
+import org.json.*;
 
-class HandlerReserve extends HandlerGeneric {
-    HandlerReserve(ServiceConverter conv) {
+class HandlerReservation extends  HandlerGeneric {
+    HandlerReservation(ServiceConverter conv){
         super();
-        this.converter = conv;
+        this.converter=conv;
     }
-
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         System.out.println("Requete de " + exchange.getLocalAddress());
@@ -23,12 +22,18 @@ class HandlerReserve extends HandlerGeneric {
         headers.add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         headers.add("Access-Control-Allow-Headers", "Content-Type");
 
-        if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
-            exchange.sendResponseHeaders(204, -1); // No content for preflight request
-            return;
-        }
+        if(exchange.getRequestMethod().equalsIgnoreCase("GET")){  //GET
+            String jsonString = null;
 
-        if (exchange.getRequestMethod().equalsIgnoreCase("POST")) { // Method post
+            try {
+                jsonString = converter.getAllReservationData();
+                sendResponse(exchange, 200, jsonString);
+            } catch (ClassNotFoundException | SQLException e) {
+                System.out.println("Erreur interne");
+                sendResponse(exchange, 500, "Internal server error");
+            } 
+        }
+        else{    //POST
             boolean res = true;
 
             InputStream is = exchange.getRequestBody();
@@ -56,9 +61,7 @@ class HandlerReserve extends HandlerGeneric {
             JSONObject json = new JSONObject();
             json.put("result", res);
 
-            sendResponse(exchange, 200, json.toString().getBytes(StandardCharsets.UTF_8));
-        } else { // GET method isn't authorized
-            sendResponse(exchange, 405, "Unauthorized method");
+            sendResponse(exchange, 200, json.toString().getBytes(StandardCharsets.UTF_8));           
         }
     }
 }
