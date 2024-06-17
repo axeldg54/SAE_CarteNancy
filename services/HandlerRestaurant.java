@@ -26,12 +26,13 @@ class HandlerRestaurant extends HandlerGeneric {
             } 
         }
         else{
-            boolean res = true;
+            boolean res;
 
             InputStream is = exchange.getRequestBody();
             String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
 
             JSONObject jsonRequest = new JSONObject(body);
+            System.out.println(jsonRequest);
 
             // Extract parameters from JSON
             String nom = jsonRequest.getString("nom");
@@ -39,22 +40,35 @@ class HandlerRestaurant extends HandlerGeneric {
             String latitude = jsonRequest.getString("latitude");
             String longitude = jsonRequest.getString("longitude");
             String note = jsonRequest.getString("note");
-            String telephone = jsonRequest.getString("numTel");
+            String telephone = jsonRequest.getString("telephone");
             int nbResMax = jsonRequest.getInt("nbResMax");
             String image = jsonRequest.getString("image");
 
+            System.out.println(nom+ "; "+adresse+" ; "+latitude+" ; "+longitude+" ; "+note+" ; "+telephone+" ; "+nbResMax+" ; "+image);
+
 
             int code;
+            JSONObject json = new JSONObject();
+
             try {
-                converter.addRestaurant(nom, adresse,latitude,longitude, note, telephone, nbResMax,image);
-                code=200;
+                int newId=converter.addRestaurant(nom, adresse,latitude,longitude, note, telephone, nbResMax,image);
+
+                if(newId==-1){
+                    code=500;
+                    res=false;
+                    System.out.println("NEW ID INTROUVABLE");
+                }
+                else{
+                    res=true;
+                    code=200;
+                    json.put("id", newId);
+                }
             } catch (ClassNotFoundException | SQLException e) {
                 System.out.println(e.getMessage());
                 res = false;
                 code=500;
             }
 
-            JSONObject json = new JSONObject();
             json.put("result", res);
 
             sendResponse(exchange, code, json.toString().getBytes(StandardCharsets.UTF_8));     

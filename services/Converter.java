@@ -125,24 +125,33 @@ public class Converter implements ServiceConverter {
     }
 
     @Override
-    public void addRestaurant(String nom, String adresse, String latitude, String longitude,  String note, String telephone, int nbResMax, String image) throws RemoteException, ClassNotFoundException, SQLException {
+    public int addRestaurant(String nom, String adresse, String latitude, String longitude,  String note, String telephone, int nbResMax, String image) throws RemoteException, ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection connection = DriverManager.getConnection(url, username, password);
         connection.setAutoCommit(true);
         
-        String requestString=
-        "INSERT INTO RESTAURANT(nom, adresse, latitude, longitude, note, telephone, nbResMax, image) VALUES(?,?,?,?,?,?,?,?)";
-        
-        PreparedStatement st=connection.prepareStatement(requestString);
+
+        //insert_restaurant insert un nouveau restaurant et retourne en parametre inout l'id du restaurant inseré
+        CallableStatement st = connection.prepareCall("{call insert_restaurant(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+
         st.setString(1, nom);
         st.setString(2, adresse);
         st.setString(3, latitude);
         st.setString(4, longitude);
-        st.setString(5, telephone);
-        st.setInt(6, nbResMax);
-        st.setString(7, image);
-        
+        st.setString(5, note);
+        st.setString(6, telephone);
+        st.setInt(7, nbResMax);
+        st.setString(8, image);
+
+        st.registerOutParameter(9, java.sql.Types.NUMERIC);
+
         st.executeUpdate();
+
+        int newId = st.getInt(9);
+
+        System.out.println("ID de la nouvelle ligne insérée : " + newId);
+
+        return newId;
     }
 }
