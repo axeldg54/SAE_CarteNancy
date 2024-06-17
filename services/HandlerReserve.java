@@ -20,6 +20,9 @@ class HandlerReserve extends  HandlerGeneric {
     public void handle(HttpExchange exchange) throws IOException {
         System.out.println("Requete de " + exchange.getLocalAddress());
 
+        exchange.getResponseHeaders().set("Content-Type", "application/json; charset=UTF-8");
+        exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+        
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) { //Methode post
             boolean res = true;
     
