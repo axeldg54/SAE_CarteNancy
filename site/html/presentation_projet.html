@@ -7,29 +7,66 @@
 </head>
 <body>
 <header>
-    <p id="retour">Retour à la carte</p>
+    <a href="../index.html" id="retour">Retour à la carte</a>
     <h1 id="titre">Cartancy</h1>
 </header>
 <main>
-    <div id="fond" class="none">
-        <div id="img-container">
-            <img src="" alt="digramme en gros plan" id="bigImg">
+    <div class="CR_section">
+        <h1 class="CR_titre" id="titre_diagramme">Diagrammes</h1>
+        <div id="diagrammes_image">
+            <div id="fond" class="none">
+                <div id="img-container">
+                    <img src="" alt="digramme en gros plan" id="bigImg">
+                </div>
+            </div>
+            <div class="boxDiag">
+                <h2 class="titre-diag">Diagramme de la structure de la base de donnée :</h2>
+                <img src="../img/diagramme_bd.png" alt="Diagramme de base de donnée" class="img-diag">
+                <p class="desc-diag">Description du diagramme</p>
+            </div>
+            <div class="boxDiag">
+                <h2 class="titre-diag">Diagramme de classe de contournement :</h2>
+                <img src="../img/diagramme_bd.png" alt="Diagramme de contournement" class="img-diag">
+                <p class="desc-diag">Description du diagramme</p>
+            </div>
+            <div class="boxDiag">
+                <h2 class="titre-diag">Diagramme de classe de converteur :</h2>
+                <img src="../img/diagramme_bd.png" alt="Diagramme de converteur" class="img-diag">
+                <p class="desc-diag">Description du diagramme</p>
+            </div>
         </div>
     </div>
-    <div class="boxDiag">
-        <h2 class="titre-diag">Diagramme de la structure de la base de donnée :</h2>
-        <img src="../img/diagramme_bd.png" alt="Diagramme de base de donnée" class="img-diag">
-        <p class="desc-diag">Description du diagramme</p>
+
+    <div class="CR_section" id="fonctionnalites">
+        <h1 class="CR_titre">Fonctionnalités réalisées</h1>
+        <ul id="liste_fonctionnalites">
+            <li>Afficher les stations de velib avec les informations les concernant</li>
+            <li>Afficher les incidents</li>
+            <li>Afficher les restaurants</li>
+            <li>Reserver un restaurant</li>
+            <li>Afficher la météo</li>
+            <li>A compléter...</li>
+        </ul>
     </div>
-    <div class="boxDiag">
-        <h2 class="titre-diag">Diagramme de classe de contournement :</h2>
-        <img src="../img/diagramme_bd.png" alt="Diagramme de contournement" class="img-diag">
-        <p class="desc-diag">Description du diagramme</p>
+
+    <div class="CR_section" id="infos_utilisation_projet">
+        <h1 class="CR_titre">Informations nécessaires à l'utilisation de notre projet</h1>
+        <div class="centrer_objet" id="liste_infos">
+            <h2 class="sous_titre_infos">Lancer le service de récupération des incidents</h2>
+            <p class="">...</p>
+
+            <h2 class="sous_titre_infos">Lancer le service de communication avec la base de données</h2>
+            <p>...</p>
+
+            <h2 class="sous_titre_infos">A compléter...</h2>
+            <p>...</p>
+        </div>
     </div>
-    <div class="boxDiag">
-        <h2 class="titre-diag">Diagramme de classe de converteur :</h2>
-        <img src="../img/diagramme_bd.png" alt="Diagramme de converteur" class="img-diag">
-        <p class="desc-diag">Description du diagramme</p>
+
+    <div class="CR_section">
+        <h1 class="CR_titre">Lien vers le dépôt git</h1>
+        <a href="https://github.com/axeldg54/SAE_CarteNancy" target="_blank" class="centrer_objet" id="lien_vers_le_code">Code de notre projet</a>
+
     </div>
 </main>
 <footer>
