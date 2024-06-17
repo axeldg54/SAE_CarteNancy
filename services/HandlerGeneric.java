@@ -37,6 +37,7 @@ abstract class HandlerGeneric implements  HttpHandler {
 
         try (OutputStream os = exchange.getResponseBody()) {
             os.write(responseBytes);
+            os.close();
         } catch (IOException e) {
             System.out.println("Erreur lors de l'envoi de la réponse: " + e.getMessage());
         }
