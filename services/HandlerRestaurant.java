@@ -34,7 +34,7 @@ class HandlerRestaurant extends HandlerGeneric {
             JSONObject jsonRequest = new JSONObject(body);
 
             // Extract parameters from JSON
-            String nom = jsonRequest.getInt("nom");
+            String nom = jsonRequest.getString("nom");
             String adresse = jsonRequest.getString("adresse");
             String latitude = jsonRequest.getString("latitude");
             String longitude = jsonRequest.getString("longitude");
