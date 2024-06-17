@@ -23,7 +23,7 @@ public class Converter implements ServiceConverter {
 
         Statement st = connection.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT * FROM RESTAURANT");
+        ResultSet rs = st.executeQuery("SELECT * FROM RESTAURANT order by id");
 
         ResultSetMetaData metaData = rs.getMetaData();
         int columnCount=metaData.getColumnCount();
@@ -83,7 +83,7 @@ public class Converter implements ServiceConverter {
 
         Statement st = connection.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT * FROM Reservation");
+        ResultSet rs = st.executeQuery("SELECT * FROM Reservation ORDER BY id");
 
         ResultSetMetaData metaData = rs.getMetaData();
         int columnCount=metaData.getColumnCount();
