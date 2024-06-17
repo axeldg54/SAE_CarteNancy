@@ -40,7 +40,7 @@ export async function display(restaurant, date, nbPersonnes) {
     changeDateInit(restaurant);
     changeNbPersonnesInit(reservation);
     document.getElementById('button_form').addEventListener('click', async () => {
-        let ratio = parseInt(document.getElementById('nbRestant').innerHTML) - parseInt(document.getElementById('nbPersonnes').value);
+        let ratio = parseInt(document.getElementById('nbRestant').innerHTML);
         await submitForm(ratio, restaurant.ID);
     });
 }
