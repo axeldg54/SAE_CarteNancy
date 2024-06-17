@@ -123,4 +123,26 @@ public class Converter implements ServiceConverter {
         
         st.executeUpdate();
     }
+
+    @Override
+    public void addRestaurant(String nom, String adresse, String latitude, String longitude,  String note, String telephone, int nbResMax, String image) throws RemoteException, ClassNotFoundException, SQLException {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        Connection connection = DriverManager.getConnection(url, username, password);
+        connection.setAutoCommit(true);
+        
+        String requestString=
+        "INSERT INTO RESTAURANT(nom, adresse, latitude, longitude, note, telephone, nbResMax, image) VALUES(?,?,?,?,?,?,?,?)";
+        
+        PreparedStatement st=connection.prepareStatement(requestString);
+        st.setString(1, nom);
+        st.setString(2, adresse);
+        st.setString(3, latitude);
+        st.setString(4, longitude);
+        st.setString(5, telephone);
+        st.setInt(6, nbResMax);
+        st.setString(7, image);
+        
+        st.executeUpdate();
+    }
 }

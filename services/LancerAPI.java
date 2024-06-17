@@ -32,7 +32,7 @@ public class LancerAPI {
             System.exit(1);
         }
 
-        HandlerAllRestaurant handlerAll=new HandlerAllRestaurant(converter);
+        HandlerRestaurant handlerAll=new HandlerRestaurant(converter);
         HandlerRemaining handlerRemaining=new HandlerRemaining(converter);
         HandlerReservation handlerReserve=new HandlerReservation(converter);
 
