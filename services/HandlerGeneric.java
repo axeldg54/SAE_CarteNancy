@@ -31,6 +31,8 @@ abstract class HandlerGeneric implements  HttpHandler {
     }
 
     protected void sendResponse(HttpExchange exchange, int statusCode, byte[] responseBytes) throws IOException {
+        exchange.getResponseHeaders().set("Content-Type", "application/json; charset=UTF-8");
+        exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
         exchange.sendResponseHeaders(statusCode, responseBytes.length);
 
         try (OutputStream os = exchange.getResponseBody()) {
