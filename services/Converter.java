@@ -131,7 +131,6 @@ public class Converter implements ServiceConverter {
         Connection connection = DriverManager.getConnection(url, username, password);
         connection.setAutoCommit(true);
         
-
         //insert_restaurant insert un nouveau restaurant et retourne en parametre inout l'id du restaurant inseré
         CallableStatement st = connection.prepareCall("{call insert_restaurant(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 
@@ -149,8 +148,6 @@ public class Converter implements ServiceConverter {
         st.executeUpdate();
 
         int newId = st.getInt(9);
-
-        System.out.println("ID de la nouvelle ligne insérée : " + newId);
 
         return newId;
     }

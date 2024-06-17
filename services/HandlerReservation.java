@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import org.json.*;
 
@@ -43,12 +44,12 @@ class HandlerReservation extends  HandlerGeneric {
             JSONObject jsonRequest = new JSONObject(body);
 
             // Extract parameters from JSON
-            int idRestaurant = jsonRequest.extractInt("idRestaurant", 0);
-            String dateRes = jsonRequest.extractString("dateRes", null);
-            String nom = jsonRequest.extractString("nom", null);
-            String prenom = jsonRequest.extractString("prenom", null);
-            String numTel = jsonRequest.extractString("numTel", null);
-            int nbPersonnes = jsonRequest.extractInt("nbPersonnes", 1);
+            int idRestaurant = extractInt(jsonRequest, "idRestaurant", 0);
+            String dateRes = extractString(jsonRequest,"dateRes", null);
+            String nom = extractString(jsonRequest,"nom", null);
+            String prenom = extractString(jsonRequest,"prenom", null);
+            String numTel = extractString(jsonRequest,"numTel", null);
+            int nbPersonnes = extractInt(jsonRequest,"nbPersonnes", 1);
 
             System.out.println(idRestaurant + " ; " + dateRes + " ; " + nom + " ; " + prenom + " ; " + numTel + " ; " + nbPersonnes);
 
@@ -56,7 +57,7 @@ class HandlerReservation extends  HandlerGeneric {
                 converter.reserve(idRestaurant, dateRes, nom, prenom, numTel, nbPersonnes);
                 code=200;
                 res=true;
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (ClassNotFoundException | SQLException | RemoteException e) {
                 System.out.println(e.getMessage());
                 res = false;
                 code=500;

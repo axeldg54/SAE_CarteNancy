@@ -44,8 +44,6 @@ class HandlerRestaurant extends HandlerGeneric {
             int nbResMax = extractInt(jsonRequest, "nbResMax", 1);
             String image = extractString(jsonRequest, "image", null);
 
-            System.out.println(nom+ "; "+adresse+" ; "+latitude+" ; "+longitude+" ; "+note+" ; "+telephone+" ; "+nbResMax+" ; "+image);
-
 
             int code;
             JSONObject json = new JSONObject();
@@ -56,7 +54,6 @@ class HandlerRestaurant extends HandlerGeneric {
                 if(newId==-1){
                     code=500;
                     res=false;
-                    System.out.println("NEW ID INTROUVABLE");
                 }
                 else{
                     res=true;
