@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import org.json.*;
 
 class HandlerRestaurant extends HandlerGeneric {
     HandlerRestaurant(ServiceConverter conv){
