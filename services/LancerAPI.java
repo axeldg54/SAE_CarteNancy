@@ -32,16 +32,16 @@ public class LancerAPI {
             System.exit(1);
         }
 
-        HandlerAllRestaurant handlerAll=new HandlerAllRestaurant(converter);
+        HandlerRestaurant handlerAll=new HandlerRestaurant(converter);
         HandlerRemaining handlerRemaining=new HandlerRemaining(converter);
-        HandlerReserve handlerReserve=new HandlerReserve(converter);
-        HandlerAllReservation handlerAllReservation=new HandlerAllReservation(converter);
+        HandlerReservation handlerReserve=new HandlerReservation(converter);
+        HandlerIncident handlerIncident = new HandlerIncident();
 
         server.createContext("/restaurants", handlerAll);
         server.createContext("/remaining", handlerRemaining);
-        server.createContext("/reserve", handlerReserve);
-        server.createContext("/reservations", handlerAllReservation);
-        
+        server.createContext("/reservations", handlerReserve);
+        server.createContext("/incidents", handlerIncident);
+
 
         server.setExecutor(null); // creates a default executor
         server.start();
