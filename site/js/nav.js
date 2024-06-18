@@ -55,7 +55,7 @@ export function displayLegend(navInfo) {
                 <li class="legend_item"><span class="legende-restaurant"></span> <img class="icon" src="./img/icon_restaurant.png">
                     <p><span class="span_moyen span_gras">${nbRestaurants}</span> restaurants</p></li>
                 <li class="legend_item"><span class="legende-sup"></span> <img class="icon" src="./img/icon_sup.png">
-                    <p><span class="span_moyen span_gras">${nbSup}</span> établissements supérieurs</p></li>
+                    <p><span class="span_moyen span_gras">${nbSup}</span> établissements d'enseignement supérieur</p></li>
                 </ul>`;
                     resolve();
                 })
@@ -151,7 +151,7 @@ function showWithoutData() {
                 <li class="legend_item"><span class="legende-restaurant"></span> <img class="icon" src="./img/icon_restaurant.png">
                     <p>restaurants</p></li>
                 <li class="legend_item"><span class="legende-sup"></span> <img class="icon" src="./img/icon_sup.png">
-                    <p>établissements supérieurs</p></li>
+                    <p>établissements d'enseignement supérieur</p></li>
             </ul>`;
 }
 

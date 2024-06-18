@@ -12,6 +12,7 @@ export async function initPopupVelib(station) {
     // On crée le contenu du popup
     let content = `
         <h2>${name}</h2>
+        <br>
         <ul>
             <li>Adresse: <span class="span_gras">${station.address}</span></li>
             <li>Nombre de vélos disponibles: <span class="span_gras">${status.num_bikes_available}</span></li>
@@ -33,6 +34,7 @@ export async function initPopupIncident(incident, lat, long) {
     // On crée le contenu du popup
     let content = `
         <h2>${incident.type}</h2>
+        <br>
         <ul>
             <li>Description: <span class="span_gras">${incident.short_description}</span></li>
             <li>Adresse: <span class="span_gras">${incident.location.street}</span></li>
@@ -54,6 +56,7 @@ export async function initPopupRestaurant(restaurant) {
     content.classList.add('popup-restaurant');
     content.innerHTML = `
         <h2>${restaurant.NOM}</h2>
+        <br>
         <ul>
             <li>Adresse: <span class="span_gras">${restaurant.ADRESSE}</span></li>
             <li>Téléphone: <span class="span_gras">${restaurant.TELEPHONE}</span></li>
@@ -70,6 +73,15 @@ export async function initPopupRestaurant(restaurant) {
         reservation.display(restaurant, new Date(), 0);
     });
     content.appendChild(button);
+
+    // On crée le bouton de notation
+    let buttonNote = document.createElement('button');
+    buttonNote.classList.add('noter');
+    buttonNote.innerHTML = "Noter";
+    buttonNote.addEventListener('click', () => {
+        //initNoter(restaurant);
+    });
+    content.appendChild(buttonNote);
 
     // On ajoute le popup à la carte
     carte.addPopup(carte.MAP, restaurant.LATITUDE, restaurant.LONGITUDE, carte.ICON_RESTAURANT, content);
