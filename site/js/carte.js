@@ -80,10 +80,9 @@ export function initMap() {
                     "LATITUDE": lat,
                     "LONGITUDE": lon
                 };
-            data.addRestaurant(content);
 
-            addMarker(map, lat, lon, ICON_RESTAURANT);
             await mapInit.initPopupRestaurant(content);
+            await data.addRestaurant(content);
         });
     });
 }

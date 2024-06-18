@@ -71,15 +71,6 @@ export async function initPopupRestaurant(restaurant) {
     });
     content.appendChild(button);
 
-    // On crée le bouton de notation
-    let buttonNote = document.createElement('button');
-    buttonNote.classList.add('noter');
-    buttonNote.innerHTML = "Noter";
-    buttonNote.addEventListener('click', () => {
-        //initNoter(restaurant);
-    });
-    content.appendChild(buttonNote);
-
     // On ajoute le popup à la carte
     carte.addPopup(carte.MAP, restaurant.LATITUDE, restaurant.LONGITUDE, carte.ICON_RESTAURANT, content);
 }

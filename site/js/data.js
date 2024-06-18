@@ -106,8 +106,16 @@ export async function postReservation(id, date, nom, prenom, tel, nbPersonnes) {
     });
 }
 
-export function addRestaurant(content) {
-    // Envoi des données
+export async function addRestaurant(content) {
+    await fetch(RESTAURANT, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'mode': 'cors'
+        },
+        body: content
+    });
 }
 
 export function getSup() {
