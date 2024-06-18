@@ -38,7 +38,7 @@ class HandlerRestaurant extends HandlerGeneric {
             String adresse = extractString(jsonRequest, "adresse", null);
             String latitude = extractString(jsonRequest, "latitude", "0");
             String longitude = extractString(jsonRequest, "longitude", "0");
-            String note = extractString(jsonRequest, "note", "0");
+            String note = extractString(jsonRequest, "note", "1");
             String telephone = extractString(jsonRequest, "telephone", "");
             int nbResMax = extractInt(jsonRequest, "nbResMax", 1);
             String image = extractString(jsonRequest, "image", null);
