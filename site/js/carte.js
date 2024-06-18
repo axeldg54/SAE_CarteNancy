@@ -45,7 +45,6 @@ export function initMap() {
             <input type="text" id="adresse" name="adresse" placeholder="Adresse" required>
             <input type="tel" id="tel" name="tel" placeholder="Téléphone" required>
             <input type="number" id="capacite" name="capacite" placeholder="Capacité" required>
-            <input type="number" id="note" name="note" placeholder="Note" required>
             <input type="text" id="photo" name="photo" placeholder="Photo [url]" required>
             <button type="button" id="button_form">Ajouter</button>
         </form>
@@ -75,13 +74,15 @@ export function initMap() {
                     "ADRESSE": document.getElementById('adresse').value,
                     "TELEPHONE": document.getElementById('tel').value,
                     "NBRESMAX": document.getElementById('capacite').value,
-                    "NOTE": document.getElementById('note').value,
+                    "NOTE": 1,
                     "IMAGE": document.getElementById('photo').value,
                     "LATITUDE": lat,
                     "LONGITUDE": lon
                 };
 
             await mapInit.initPopupRestaurant(content);
+            document.getElementsByClassName('leaflet-popup-close-button')[0].click();
+
             await data.addRestaurant(content);
         });
     });
