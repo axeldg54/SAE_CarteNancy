@@ -300,10 +300,9 @@ footer {
 /** FORMULAIRE **/
 
 #form {
+    bottom: -100%;
     z-index: 4;
     position: absolute;
-    top: 25%;
-    left: -100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -404,4 +403,87 @@ footer {
     right: 10px;
     font-size: 1em;
     color: gray;
+}
+
+/** ANIMATION FORMULAIRE **/
+
+@keyframes slideIn {
+    0% {
+        bottom: -100%;
+    }
+
+    80% {
+        bottom: 30%;
+    }
+
+    100% {
+        bottom: 25%;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        bottom: 25%;
+    }
+
+    30% {
+        bottom: 30%;
+    }
+
+    100% {
+        bottom: -100%;
+    }
+}
+
+.formIn {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.formOut {
+    animation: slideOut 0.5s ease-in-out;
+}
+
+/** FORMULAIRE ADD RESTAURANT **/
+
+#formRestaurant {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+}
+
+#formRestaurant input {
+    width: 90%;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+    z-index: 1;
+    background: transparent;
+    transition: background 0.2s;
+}
+
+input::placeholder {
+    color: black;
+}
+
+#formRestaurant button {
+    background-color: #191923;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#formRestaurant img {
+    position: absolute;
+    width: 100%;
+    opacity: 0.1;
+    z-index: 1;
 }

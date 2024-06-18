@@ -23,11 +23,11 @@ function afficherBigImg(){
 
 function afficher(){
     fond.classList.remove("none");
-    fond.classList.add("block");
+    fond.classList.add("flex");
 }
 
 function retirer(){
-    fond.classList.remove("block");
+    fond.classList.remove("flex");
     fond.classList.add("none");
 }
 

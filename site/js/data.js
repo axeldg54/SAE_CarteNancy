@@ -103,3 +103,7 @@ export function postReservation(id, date, nom, prenom, tel, nbPersonnes) {
         return await response.json();
     })
 }
+
+export function addRestaurant(content) {
+    // Envoi des données
+}

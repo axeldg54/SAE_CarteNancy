@@ -1,3 +1,6 @@
+import * as data from "./data.js";
+import * as mapInit from "./mapInit.js";
+
 export let MAP;
 export const ICON_VELO = L.icon({
     iconUrl: './img/icon_velo3.png',
@@ -25,6 +28,58 @@ export function initMap() {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
     MAP = map;
+
+    map.addEventListener('contextmenu', (e) => {
+        let content = `
+        <div id="formRestaurant">
+            <img src="./img/icon_restaurant.png">
+            <h2>Ajouter un restaurant</h2>
+            <input type="text" id="nom" name="nom" placeholder="Nom" required>
+            <input type="text" id="adresse" name="adresse" placeholder="Adresse" required>
+            <input type="tel" id="tel" name="tel" placeholder="Téléphone" required>
+            <input type="number" id="capacite" name="capacite" placeholder="Capacité" required>
+            <input type="number" id="note" name="note" placeholder="Note" required>
+            <input type="text" id="photo" name="photo" placeholder="Photo [url]" required>
+            <button type="button" id="button_form">Ajouter</button>
+        </div>
+        `;
+
+        let lat = e.latlng.lat;
+        let lon = e.latlng.lng;
+        // créé un popup et clique dessus
+        L.popup()
+            .setLatLng([lat, lon])
+            .setContent(content)
+            .openOn(map);
+
+        document.getElementById('button_form').addEventListener('click', async () => {
+            let id;
+            let restaurants = await data.getRestaurants();
+            restaurants = restaurants.data;
+            if (restaurants.length === 0) {
+                id = 1;
+            } else {
+                id = restaurants[restaurants.length - 1].ID + 1;
+            }
+
+            content =
+                {
+                    "ID": id,
+                    "NOM": document.getElementById('nom').value,
+                    "ADRESSE": document.getElementById('adresse').value,
+                    "TELEPHONE": document.getElementById('tel').value,
+                    "NBRESMAX": document.getElementById('capacite').value,
+                    "NOTE": document.getElementById('note').value,
+                    "IMAGE": document.getElementById('photo').value,
+                    "LATITUDE": lat,
+                    "LONGITUDE": lon
+                };
+            data.addRestaurant(content);
+
+            addMarker(map, lat, lon, ICON_RESTAURANT);
+            await mapInit.initPopupRestaurant(content);
+        });
+    });
 }
 
 export function addMarker(map, lat, lon, icon) {

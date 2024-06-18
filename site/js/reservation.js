@@ -27,7 +27,7 @@ export async function display(restaurant, date, nbPersonnes) {
             <input type="text" id="prenom" name="prenom" placeholder="Prénom" required>
             <input type="text" id="tel" name="tel" placeholder="Téléphone" required>
             <input type="date" id="date" name="date" value="${dateHtml}" min="${todayHtml}" required>
-            <input type="number" id="nbPersonnes" name="nbPersonnes" placeholder="Nombre de personnes" value="${nbPersonnes}" min="0" required>
+            <input type="number" id="nbPersonnes" name="nbPersonnes" placeholder="Nombre de personnes" value="${nbPersonnes}" min="0" max="${nbPlaceRestante}" required>
             <button type="button" id="button_form">Réserver</button>
         </div>
         <span class="span_place"><span id="nbRestant">${nbPlaceRestante}</span> / ${reservation.NBRESMAX} places disponibles</span>`;
@@ -48,10 +48,7 @@ export async function display(restaurant, date, nbPersonnes) {
 function changeDateInit(restaurant) {
     document.getElementById('date').addEventListener('change', async () => {
         let date = document.getElementById('date').value;
-        let dateFr = dateToFr(new Date(date));
-        let reservation = await data.getReservation(restaurant.ID, dateFr);
-        let nbPersonnes = document.getElementById('nbPersonnes').value;
-        document.getElementById('nbRestant').innerHTML = parseInt(reservation.RESTANT) - parseInt(nbPersonnes);
+        await display(restaurant, new Date(date), 0);
     });
 }
 
@@ -102,6 +99,14 @@ async function submitForm(ratio, id) {
         let date = document.getElementById('date').value;
         let dateFr = date.split('-')[2] + '/' + date.split('-')[1] + '/' + date.split('-')[0];
         let nbPersonnes = document.getElementById('nbPersonnes').value;
+
+        if (nom === '' || prenom === '' || tel === '' || date === '') {
+            alert('Veuillez remplir tous les champs');
+            return;
+        } else if (nbPersonnes <= 0) {
+            alert('Veuillez rentrer un nombre de personnes valide');
+            return;
+        }
 
         // Envoi des données
         await data.postReservation(id, dateFr, nom, prenom, tel, nbPersonnes);
