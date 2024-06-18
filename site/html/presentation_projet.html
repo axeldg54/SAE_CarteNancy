@@ -32,10 +32,6 @@
         </div>
     </div>
 
-
-
-
-
     <div class="CR_section" id="fonctionnalites">
         <h1 class="CR_titre">Fonctionnalités réalisées</h1>
         <div id="liste_fonctionnalites">
@@ -63,6 +59,11 @@
                 <p>Affichage des informations concernant les incidents</p>
             </div>
             <div class="carte_fonctionnalite">
+                <h2 class="titre_carte_presentation">Afficher les établissements de l'enseignement supérieur</h2>
+                <img src="../img/img_presentation_etablissement_ens_sup.png" alt="image montrant l'affichage des informations concernant les établissements de l'enseignement supérieur" class="img_presentation">
+                <p>Affichage des informations concernant les établissements de l'enseignement supérieur</p>
+            </div>
+            <div class="carte_fonctionnalite">
                 <h2 class="titre_carte_presentation">Afficher les restaurants</h2>
                 <img src="../img/img_presentation_restaurants.png" alt="image montrant l'affichage des restaurants" class="img_presentation">
                 <p>Affichage des restaurants</p>
@@ -79,6 +80,8 @@
             </div>
             <div class="carte_fonctionnalite">
                 <h2 class="titre_carte_presentation">Ajouter un nouveau restaurant sur la carte</h2>
+                <img src="../img/img_presentation_ajouter_restaurant.png" alt="image montrant l'affichage du formulaire d'ajout d'un restaurant sur la carte" class="img_presentation">
+                <p>Affichage du formulaire d'ajout d'un restaurant sur la carte</p>
             </div>
             <div class="carte_fonctionnalite">
                 <h2 class="titre_carte_presentation">Ajouter une note à un restaurant</h2>
@@ -89,21 +92,17 @@
         </div>
     </div>
 
-
-
-
-
     <div class="CR_section" id="infos_utilisation_projet">
         <h1 class="CR_titre">Informations nécessaires à l'utilisation de notre projet</h1>
         <div class="centrer_objet" id="liste_infos">
 
-            <h2 class="sous_titre_infos">Lancer le service de récupération des incidents</h2>
+            <h2 class="sous_titre_infos">Lancer l'API centrale</h2>
             <div class="zone_de_code" id="zone_1">
                 <button class="copy_button" id="copy_button_1">
                     <img src="../img/icon_copier.png" alt="copier" class="icon_copy">
                 </button>
                 <pre>
-Zone 2 : à compléter avec les lignes de commande une fois la structure du projet terminée.
+java -cp ".;json-20240303.jar;ojdbc11.jar" LancerAPI 1025
 </pre>
             </div>
 
@@ -113,18 +112,18 @@ Zone 2 : à compléter avec les lignes de commande une fois la structure du proj
                     <img src="../img/icon_copier.png" alt="copier" class="icon_copy">
                 </button>
                 <pre>
-Zone 2 : à compléter avec les lignes de commande une fois la structure du projet terminée.
+java -cp ".;json-20240303.jar;ojdbc11.jar" LancerConverter localhost 1025
 </pre>
             </div>
 
 
-            <h2 class="sous_titre_infos">A compléter...</h2>
+            <h2 class="sous_titre_infos">Lancer le service de récupération des incidents et des établissements de l'enseignement supérieur</h2>
             <div class="zone_de_code" id="zone_3">
                 <button class="copy_button" id="copy_button_3">
                     <img src="../img/icon_copier.png" alt="copier" class="icon_copy">
                 </button>
                 <pre>
-Zone 3 : à compléter avec les lignes de commande une fois la structure du projet terminée.
+java -cp ".;json-20240303.jar;ojdbc11.jar" LancerBridge localhost 1025
 </pre>
             </div>
 

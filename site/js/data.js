@@ -99,7 +99,7 @@ export async function postReservation(id, date, nom, prenom, tel, nbPersonnes) {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'mode': 'no-cors'
+            'mode': 'cors'
         },
         body: data
     });
