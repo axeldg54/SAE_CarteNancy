@@ -8,12 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.*;
 
-abstract class HandlerGeneric implements  HttpHandler {
-    protected ServiceConverter converter;
-    
+abstract class HandlerGeneric implements  HttpHandler {    
     @Override
     public abstract void handle(HttpExchange exchange) throws IOException;
-
     public Map<String, String> queryToMap(String query) {
         if(query == null) {
             return null;

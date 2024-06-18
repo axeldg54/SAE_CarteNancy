@@ -14,7 +14,7 @@ public class LancerAPI {
         if(args.length>0){
             ip=args[0];
             if(args.length>1){
-                port=Integer.parseInt(args[1]);
+                port=Integer.parseInt(args[1]); 
             }
         }
 
@@ -32,9 +32,15 @@ public class LancerAPI {
             System.exit(1);
         }
 
-        HandlerRestaurant handlerAll=new HandlerRestaurant(converter);
-        HandlerRemaining handlerRemaining=new HandlerRemaining(converter);
-        HandlerReservation handlerReserve=new HandlerReservation(converter);
+        HandlerRestaurant handlerAll=new HandlerRestaurant();
+        handlerAll.converter=converter;
+
+        HandlerRemaining handlerRemaining=new HandlerRemaining();
+        handlerRemaining.converter=converter;
+
+        HandlerReservation handlerReserve=new HandlerReservation();
+        handlerReserve.converter=converter;
+        
         HandlerIncident handlerIncident = new HandlerIncident();
 
         server.createContext("/restaurants", handlerAll);
