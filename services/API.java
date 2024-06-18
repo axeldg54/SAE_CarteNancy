@@ -10,9 +10,9 @@ public class API implements ServiceAPI {
 
     private HttpServer server;
 
-    API(){
+    API(int port){
         try{
-            server = HttpServer.create(new InetSocketAddress(8000), 0);
+            server = HttpServer.create(new InetSocketAddress(port), 0);
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -24,6 +24,10 @@ public class API implements ServiceAPI {
     public void addHandler(String endpoint, HandlerGeneric handler){
         handlers.add(handler);
         server.createContext(endpoint, handler);
+    }
+
+    public void start() throws RemoteException{
+        server.start();
     }
 
     @Override

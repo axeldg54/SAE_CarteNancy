@@ -5,4 +5,6 @@ public interface ServiceAPI extends Remote{
     public void addConverter(ServiceConverter converter) throws RemoteException;
 
     public void addBridge(ServiceBridge bridge) throws RemoteException;
+
+    public void start() throws RemoteException;
 }

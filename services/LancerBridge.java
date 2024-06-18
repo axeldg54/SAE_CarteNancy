@@ -4,7 +4,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class LancerConverter {
+public class LancerBridge {
     public static void main(String[] args) {
         String ip="localhost";
         int port = 1090;
@@ -16,12 +16,12 @@ public class LancerConverter {
             }
         }
 
-        ServiceConverter serviceConverter = new Converter("baudson4u", "rootroot");
+        ServiceBridge serviceBridge = new Bridge();
 
-        ServiceConverter rdServiceConverter = null;
+        ServiceBridge rdServiceBridge = null;
 
         try {
-            rdServiceConverter = (ServiceConverter) UnicastRemoteObject.exportObject(serviceConverter, 0);
+            rdServiceBridge = (ServiceBridge) UnicastRemoteObject.exportObject(serviceBridge, 0);
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
             System.out.println("service : L'exportation n'a pas fonctionné");
@@ -50,7 +50,7 @@ public class LancerConverter {
         }
 
         try {
-            api.addConverter(rdServiceConverter);
+            api.addBridge(rdServiceBridge);
         } catch (RemoteException e) {
             e.printStackTrace();
             System.exit(1);
