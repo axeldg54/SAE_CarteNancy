@@ -23,7 +23,7 @@ public class Converter implements ServiceConverter {
 
         Statement st = connection.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT * FROM RESTAURANT");
+        ResultSet rs = st.executeQuery("SELECT * FROM RESTAURANT order by id");
 
         ResultSetMetaData metaData = rs.getMetaData();
         int columnCount=metaData.getColumnCount();
@@ -83,7 +83,7 @@ public class Converter implements ServiceConverter {
 
         Statement st = connection.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT * FROM Reservation");
+        ResultSet rs = st.executeQuery("SELECT * FROM Reservation ORDER BY id");
 
         ResultSetMetaData metaData = rs.getMetaData();
         int columnCount=metaData.getColumnCount();
@@ -105,14 +105,15 @@ public class Converter implements ServiceConverter {
     @Override
     public void reserve(int idRes, String dateRes, String nom, String prenom, String numTel, int nbPersonnes) throws RemoteException, ClassNotFoundException, SQLException {        
         Class.forName("oracle.jdbc.driver.OracleDriver");
-
-        Connection connection = DriverManager.getConnection(url, username, password);
-        connection.setAutoCommit(true);
         
         String requestString=
         "INSERT INTO RESERVATION(idRestaurant, dateres, nom, prenom, numtel, nbPersonnes) "+
         "VALUES(?,To_Date(?, 'DD/MM/YYYY'),?,?,?,?)";
-        
+
+
+        Connection connection = DriverManager.getConnection(url, username, password);
+        connection.setAutoCommit(false);
+
         PreparedStatement st=connection.prepareStatement(requestString);
         st.setInt(1, idRes);
         st.setString(2, dateRes);
@@ -122,6 +123,8 @@ public class Converter implements ServiceConverter {
         st.setInt(6, nbPersonnes);
         
         st.executeUpdate();
+
+        connection.commit();
     }
 
     @Override
@@ -129,9 +132,8 @@ public class Converter implements ServiceConverter {
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
         Connection connection = DriverManager.getConnection(url, username, password);
-        connection.setAutoCommit(true);
+        connection.setAutoCommit(false);
         
-
         //insert_restaurant insert un nouveau restaurant et retourne en parametre inout l'id du restaurant inseré
         CallableStatement st = connection.prepareCall("{call insert_restaurant(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 
@@ -147,10 +149,9 @@ public class Converter implements ServiceConverter {
         st.registerOutParameter(9, java.sql.Types.NUMERIC);
 
         st.executeUpdate();
+        connection.commit();
 
         int newId = st.getInt(9);
-
-        System.out.println("ID de la nouvelle ligne insérée : " + newId);
 
         return newId;
     }

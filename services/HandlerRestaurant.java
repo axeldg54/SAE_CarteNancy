@@ -35,16 +35,14 @@ class HandlerRestaurant extends HandlerGeneric {
             System.out.println(jsonRequest);
 
             // Extract parameters from JSON
-            String nom = jsonRequest.getString("nom");
-            String adresse = jsonRequest.getString("adresse");
-            String latitude = jsonRequest.getString("latitude");
-            String longitude = jsonRequest.getString("longitude");
-            String note = jsonRequest.getString("note");
-            String telephone = jsonRequest.getString("telephone");
-            int nbResMax = jsonRequest.getInt("nbResMax");
-            String image = jsonRequest.getString("image");
-
-            System.out.println(nom+ "; "+adresse+" ; "+latitude+" ; "+longitude+" ; "+note+" ; "+telephone+" ; "+nbResMax+" ; "+image);
+            String nom = extractString(jsonRequest, "nom", null);
+            String adresse = extractString(jsonRequest, "adresse", null);
+            String latitude = extractString(jsonRequest, "latitude", "0");
+            String longitude = extractString(jsonRequest, "longitude", "0");
+            String note = extractString(jsonRequest, "note", "0");
+            String telephone = extractString(jsonRequest, "telephone", "");
+            int nbResMax = extractInt(jsonRequest, "nbResMax", 1);
+            String image = extractString(jsonRequest, "image", null);
 
 
             int code;
@@ -56,7 +54,6 @@ class HandlerRestaurant extends HandlerGeneric {
                 if(newId==-1){
                     code=500;
                     res=false;
-                    System.out.println("NEW ID INTROUVABLE");
                 }
                 else{
                     res=true;

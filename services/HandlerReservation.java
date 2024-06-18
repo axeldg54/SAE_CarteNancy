@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import org.json.*;
 
@@ -34,7 +35,8 @@ class HandlerReservation extends  HandlerGeneric {
             } 
         }
         else{    //POST
-            boolean res = true;
+            int code;
+            boolean res;
 
             InputStream is = exchange.getRequestBody();
             String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
@@ -42,26 +44,29 @@ class HandlerReservation extends  HandlerGeneric {
             JSONObject jsonRequest = new JSONObject(body);
 
             // Extract parameters from JSON
-            int idRestaurant = jsonRequest.getInt("idRestaurant");
-            String dateRes = jsonRequest.getString("dateRes");
-            String nom = jsonRequest.getString("nom");
-            String prenom = jsonRequest.getString("prenom");
-            String numTel = jsonRequest.getString("numTel");
-            int nbPersonnes = jsonRequest.getInt("nbPersonnes");
+            int idRestaurant = extractInt(jsonRequest, "idRestaurant", 0);
+            String dateRes = extractString(jsonRequest,"dateRes", null);
+            String nom = extractString(jsonRequest,"nom", null);
+            String prenom = extractString(jsonRequest,"prenom", null);
+            String numTel = extractString(jsonRequest,"numTel", null);
+            int nbPersonnes = extractInt(jsonRequest,"nbPersonnes", 1);
 
             System.out.println(idRestaurant + " ; " + dateRes + " ; " + nom + " ; " + prenom + " ; " + numTel + " ; " + nbPersonnes);
 
             try {
                 converter.reserve(idRestaurant, dateRes, nom, prenom, numTel, nbPersonnes);
-            } catch (ClassNotFoundException | SQLException e) {
+                code=200;
+                res=true;
+            } catch (ClassNotFoundException | SQLException | RemoteException e) {
                 System.out.println(e.getMessage());
                 res = false;
+                code=500;
             }
 
             JSONObject json = new JSONObject();
             json.put("result", res);
 
-            sendResponse(exchange, 200, json.toString().getBytes(StandardCharsets.UTF_8));           
+            sendResponse(exchange, code, json.toString().getBytes(StandardCharsets.UTF_8));           
         }
     }
 }

@@ -1,16 +1,13 @@
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
-class HandlerIncident implements HttpHandler {
+class HandlerIncident extends HandlerGeneric {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         System.out.println("Requete à " + exchange.getLocalAddress());
@@ -31,22 +28,12 @@ class HandlerIncident implements HttpHandler {
         try {
             HttpResponse<String> r = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            String encoding = "UTF-8"; // Peut-être inutile pour du JSON
             String reponse = r.body();
-            exchange.getResponseHeaders().set("Content-Type", "application/json; charset=" + encoding);
             
-            // C'est cette ligne qui permet d'autoriser le CORS
-            exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
-
-            byte[] bytes = reponse.getBytes(StandardCharsets.UTF_8);
-            exchange.sendResponseHeaders(200, bytes.length); // 200 = OK
-            System.out.println(reponse);
-
-            OutputStream os = exchange.getResponseBody();
-            os.write(bytes);
-            os.close();
+            sendResponse(exchange, 200, reponse);
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
+            sendResponse(exchange, 500, "Interruption error");
         }
     }
 }

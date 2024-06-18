@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import org.json.*;
 
 abstract class HandlerGeneric implements  HttpHandler {
     protected ServiceConverter converter;
@@ -46,5 +47,26 @@ abstract class HandlerGeneric implements  HttpHandler {
     protected void sendResponse(HttpExchange exchange, int statusCode, String responseMessage) throws IOException {
         byte[] responseBytes = responseMessage.getBytes(StandardCharsets.UTF_8);
         sendResponse(exchange, statusCode, responseBytes);
+    }
+
+
+    protected String extractString(JSONObject json, String key, String defaultValue){
+        try{
+            String res=json.getString(key);
+            return res;
+        }
+        catch(Exception e){
+            return defaultValue;
+        }
+    }
+    
+    protected int extractInt(JSONObject json, String key, int defaultValue){
+        try{
+            int res=json.getInt(key);
+            return res;
+        }
+        catch(Exception e){
+            return defaultValue;
+        }
     }
 }
