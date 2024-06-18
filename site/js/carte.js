@@ -31,7 +31,7 @@ export function initMap() {
 
     map.addEventListener('contextmenu', (e) => {
         let content = `
-        <div id="formRestaurant">
+        <form id="formRestaurant">
             <img src="./img/icon_restaurant.png">
             <h2>Ajouter un restaurant</h2>
             <input type="text" id="nom" name="nom" placeholder="Nom" required>
@@ -41,7 +41,7 @@ export function initMap() {
             <input type="number" id="note" name="note" placeholder="Note" required>
             <input type="text" id="photo" name="photo" placeholder="Photo [url]" required>
             <button type="button" id="button_form">Ajouter</button>
-        </div>
+        </form>
         `;
 
         let lat = e.latlng.lat;
@@ -55,7 +55,6 @@ export function initMap() {
         document.getElementById('button_form').addEventListener('click', async () => {
             let id;
             let restaurants = await data.getRestaurants();
-            restaurants = restaurants.data;
             if (restaurants.length === 0) {
                 id = 1;
             } else {

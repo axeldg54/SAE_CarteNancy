@@ -7,7 +7,7 @@ const INCIDENT = 'https://carto.g-ny.org/data/cifs/cifs_waze_v2.json';
 const INCIDENT_LOCAL = 'http://localhost:8000/incidents';
 const RESTAURANT = 'http://localhost:8000/restaurants';
 const RESERVATION = 'http://localhost:8000/remaining?id=#&date=#';
-const POST_RESERVATION = 'http://localhost:8000/reserve';
+const POST_RESERVATION = 'http://localhost:8000/reservations';
 
 export function getSystem() {
     return new Promise((resolve, reject) => {
@@ -84,7 +84,7 @@ export function getReservation(id, date) {
     });
 }
 
-export function postReservation(id, date, nom, prenom, tel, nbPersonnes) {
+export async function postReservation(id, date, nom, prenom, tel, nbPersonnes) {
     let data = {
         "idRestaurant": id,
         "dateRes": date,
@@ -93,15 +93,16 @@ export function postReservation(id, date, nom, prenom, tel, nbPersonnes) {
         "numTel": tel,
         "nbPersonnes": nbPersonnes
     };
-    fetch(POST_RESERVATION, {
+
+    await fetch(POST_RESERVATION, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'mode': 'no-cors'
         },
-        body: JSON.stringify(data),
-    }).then(response => async  () => {
-        return await response.json();
-    })
+        body: data
+    });
 }
 
 export function addRestaurant(content) {
