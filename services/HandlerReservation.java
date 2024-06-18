@@ -9,12 +9,10 @@ import java.sql.SQLException;
 import org.json.*;
 
 class HandlerReservation extends  HandlerGeneric {
-    public ServiceConverter converter;
-
     HandlerReservation(){
         super();
     }
-    
+
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         System.out.println("Requete de " + exchange.getLocalAddress());

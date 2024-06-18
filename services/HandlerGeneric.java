@@ -9,6 +9,9 @@ import java.util.Map;
 import org.json.*;
 
 abstract class HandlerGeneric implements  HttpHandler {    
+    public ServiceConverter converter;
+    public ServiceBridge bridge;
+    
     @Override
     public abstract void handle(HttpExchange exchange) throws IOException;
     public Map<String, String> queryToMap(String query) {

@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import org.json.*;
 
 class HandlerRestaurant extends HandlerGeneric {
-    public ServiceConverter converter;
-
     HandlerRestaurant(){
         super();
     }

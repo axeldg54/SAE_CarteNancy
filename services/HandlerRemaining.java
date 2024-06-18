@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
 
-class HandlerRemaining extends HandlerGeneric {   
-    public ServiceConverter converter;
-    
+class HandlerRemaining extends HandlerGeneric {       
     HandlerRemaining(){
         super();
     }
