@@ -1,10 +1,15 @@
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.rmi.RemoteException;
 import java.time.Duration;
+import java.util.Iterator;
 
 public class Bridge implements ServiceBridge{
 
@@ -46,10 +51,40 @@ public class Bridge implements ServiceBridge{
                 .build();
 
         HttpResponse<String> r = client.send(request, HttpResponse.BodyHandlers.ofString());
-
         String response = r.body();
 
-        System.out.println(response);
-        return response;
+        // On stock ici les données qui nous intéressent
+        JSONObject responseJson = new JSONObject("""
+                {
+                    "etablissements": []
+                }
+                """);
+
+        // On parse en json pour parcourir les données et récupérer ce qui nous intéresse
+        JSONObject obj = new JSONObject(response);
+        JSONArray etablissements = obj.getJSONArray("results");
+        for (int i = 0; i < etablissements.length(); i++) {
+            JSONObject newEtablissement = new JSONObject();
+            JSONObject etablissement = etablissements.getJSONObject(i);
+            newEtablissement.put("latitude", etablissement.getJSONObject("coordonnees").getDouble("lat"));
+            newEtablissement.put("longitude", etablissement.getJSONObject("coordonnees").getDouble("lon"));
+            newEtablissement.put("type", etablissement.getString("type_d_etablissement"));
+            newEtablissement.put("siege", etablissement.getString("siege_lib"));
+            newEtablissement.put("code_postal", etablissement.getString("com_code"));
+            newEtablissement.put("adresse", etablissement.getString("adresse_uai"));
+
+            responseJson.append("etablissements", newEtablissement);
+        }
+
+        return responseJson.toString();
+    }
+
+    public static void main(String[] args) {
+        Bridge bridge = new Bridge();
+        try {
+            bridge.getSup();
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }
