@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import org.json.*;
 
 class HandlerRestaurant extends HandlerGeneric {
-    HandlerRestaurant(ServiceConverter conv){
+    public ServiceConverter converter;
+
+    HandlerRestaurant(){
         super();
-        this.converter=conv;
     }
     @Override
     public void handle(HttpExchange exchange) throws IOException {

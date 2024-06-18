@@ -5,9 +5,10 @@ import java.sql.SQLException;
 import java.util.Map;
 
 class HandlerRemaining extends HandlerGeneric {   
-    HandlerRemaining(ServiceConverter conv){
+    public ServiceConverter converter;
+    
+    HandlerRemaining(){
         super();
-        this.converter=conv;
     }
 
     @Override
