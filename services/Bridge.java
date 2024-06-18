@@ -69,6 +69,7 @@ public class Bridge implements ServiceBridge{
             newEtablissement.put("siege", etablissement.getString("siege_lib"));
             newEtablissement.put("code_postal", etablissement.getString("com_code"));
             newEtablissement.put("adresse", etablissement.getString("adresse_uai"));
+            newEtablissement.put("nom", etablissement.getString("implantation_lib"));
 
             responseJson.append("etablissements", newEtablissement);
         }

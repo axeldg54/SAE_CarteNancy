@@ -8,6 +8,7 @@ const INCIDENT_LOCAL = 'http://localhost:8000/incidents';
 const RESTAURANT = 'http://localhost:8000/restaurants';
 const RESERVATION = 'http://localhost:8000/remaining?id=#&date=#';
 const POST_RESERVATION = 'http://localhost:8000/reservations';
+const SUP = 'http://localhost:8000/sup';
 
 export function getSystem() {
     return new Promise((resolve, reject) => {
@@ -107,4 +108,13 @@ export async function postReservation(id, date, nom, prenom, tel, nbPersonnes) {
 
 export function addRestaurant(content) {
     // Envoi des données
+}
+
+export function getSup() {
+    return new Promise((resolve, reject) => {
+        fetch(SUP)
+            .then(response => response.json())
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+    });
 }

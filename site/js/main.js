@@ -8,4 +8,5 @@ window.onload = async function () {
     await mapDisplay.displayMarkerVelib();
     await mapDisplay.displayMarkerIncident();
     await mapDisplay.displayMarkerRestaurant();
+    await mapDisplay.displayMarkerSup();
 }

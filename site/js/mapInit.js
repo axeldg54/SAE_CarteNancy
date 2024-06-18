@@ -83,3 +83,20 @@ export async function initPopupRestaurant(restaurant) {
     // On ajoute le popup à la carte
     carte.addPopup(carte.MAP, restaurant.LATITUDE, restaurant.LONGITUDE, carte.ICON_RESTAURANT, content);
 }
+
+export async function initPopupSup(etablissement){
+    // On crée le contenu du popup
+    let content = `
+        <h4>${etablissement.nom}</h4>
+        <br>
+        <ul>
+            <li>Code Postal: <span class="span_gras">${etablissement.code_postal}</span></li>
+            <li>Adresse: <span class="span_gras">${etablissement.adresse}</span></li>
+            <li>Type: <span class="span_gras">${etablissement.type}</span></li>
+            <li>Siège: <span class="span_gras">${etablissement.siege}</span></li>
+        </ul>
+    `;
+
+    // On ajoute le popup à la carte
+    carte.addPopup(carte.MAP, etablissement.latitude, etablissement.longitude, carte.ICON_SUP, content);
+}

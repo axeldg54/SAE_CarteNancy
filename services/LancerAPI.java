@@ -35,6 +35,9 @@ public class LancerAPI {
         HandlerIncident handlerIncident = new HandlerIncident();
         api.addHandler("/incidents", handlerIncident);
 
+        HandlerSup handlerSup = new HandlerSup();
+        api.addHandler("/sup", handlerSup);
+
 
         ServiceAPI rdServiceAPI=null;
 

@@ -21,6 +21,13 @@ export const ICON_RESTAURANT = L.icon({
     popupAnchor: [0, -37]
 });
 
+export const ICON_SUP = L.icon({
+    iconUrl: './img/icon_sup.png',
+    iconSize: [25,25],
+    iconAnchor: [16, 37],
+    popupAnchor: [0, -37]
+});
+
 export function initMap() {
     let map = L.map('map').setView([48.687,  6.19], 13);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

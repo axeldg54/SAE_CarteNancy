@@ -43,7 +43,9 @@ export function displayLegend(navInfo) {
             let nbStations = stations.data.stations.length;
             data.getRestaurants().then(restaurants => {
                 let nbRestaurants = restaurants.length;
-                navInfo.innerHTML = `
+                data.getSup().then(sup => {
+                    let nbSup = sup.etablissements.length;
+                    navInfo.innerHTML = `
              <h2>Légende</h2>
                 <ul>
                 <li class="legend_item"><span class="legende-velo"></span> <img class="icon" src="./img/icon_velo3.png">
@@ -52,8 +54,11 @@ export function displayLegend(navInfo) {
                     <p><span class="span_moyen span_gras">${nbIncidents}</span> incidents</p></li>
                 <li class="legend_item"><span class="legende-restaurant"></span> <img class="icon" src="./img/icon_restaurant.png">
                     <p><span class="span_moyen span_gras">${nbRestaurants}</span> restaurants</p></li>
+                <li class="legend_item"><span class="legende-sup"></span> <img class="icon" src="./img/icon_sup.png">
+                    <p><span class="span_moyen span_gras">${nbSup}</span> établissements supérieurs</p></li>
                 </ul>`;
-                resolve();
+                    resolve();
+                })
             });
         }).catch(e => {
             showWithoutData();
@@ -140,11 +145,13 @@ function showWithoutData() {
             <h2>Légende</h2>
             <ul>
                 <li class="legend_item"><span class="legende-velo"></span> <img class="icon" src="./img/icon_velo3.png">
-                    <p><span class="span_moyen span_gras"></span> stations de velib</p></li>
+                    <p>stations de velib</p></li>
                 <li class="legend_item"><span class="legende-incident"></span> <img class="icon" src="./img/icon_incident.png">
-                    <p><span class="span_moyen span_gras"></span> incidents</p></li>
+                    <p>incidents</p></li>
                 <li class="legend_item"><span class="legende-restaurant"></span> <img class="icon" src="./img/icon_restaurant.png">
-                    <p><span class="span_moyen span_gras"></span> restaurants</p></li>
+                    <p>restaurants</p></li>
+                <li class="legend_item"><span class="legende-sup"></span> <img class="icon" src="./img/icon_sup.png">
+                    <p>établissements supérieurs</p></li>
             </ul>`;
 }
 
