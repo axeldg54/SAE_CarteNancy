@@ -12,8 +12,8 @@ body{
     display: none;
 }
 
-.block{
-    display: block;
+.flex{
+    display: flex;
 }
 
 /** HEADER **/
@@ -94,6 +94,7 @@ main{
     border-radius: 1rem;
     transition: all 0.3s ease;
     align-self: center;
+    max-width: 50rem;
 }
 
 .img-diag:hover{
@@ -114,22 +115,22 @@ main{
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 5;
     backdrop-filter: blur(0.2rem);
+    justify-content: center;
 }
 
 #img-container{
     position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-27rem); /* taille de l'image + padding */
     background-color: white;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 0.2rem 5rem rgba(0, 0, 0, 0.8);
-
+    align-self: center;
+    max-width: 80%;
 }
 
 #bigImg{
-    width: 50rem;
+    width: 100%;
+    min-width: 60rem;
     height: auto;
     border-radius: 1rem;
 }
@@ -137,11 +138,42 @@ main{
 /* FONCTIONNALITES */
 
 #liste_fonctionnalites{
-    align-self: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carte_fonctionnalite{
+    display: flex;
+    flex-direction: column;
     background-color: white;
-    padding: 1rem 2rem 1rem 2rem;
     border-radius: 1rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    margin: 1rem;
+    padding: 1rem;
+    align-items: center;
+}
+
+.titre_carte_presentation{
+    padding: 1rem;
+}
+
+.pls_image_presentation{
+    display: flex;
+    flex-direction: row;
+}
+
+.sous_carte{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img_presentation{
+    align-items: center;
+    border-radius: 1rem;
+    margin: 1rem;
+    max-width: 30rem;
 }
 
 /* INFORMATIONS NECESSAIRES A L'UTILISATION DU PROJET */
