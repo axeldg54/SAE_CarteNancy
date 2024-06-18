@@ -22,14 +22,14 @@ export async function display(restaurant, date, nbPersonnes) {
                 <span class="span_restaurant">${reservation.NOM}</span>
                 <!-- span complet ou disponible -->
             </div>
-        <div class="formulaire">
+        <form class="formulaire">
             <input type="text" id="nom" name="nom" placeholder="Nom" required>
             <input type="text" id="prenom" name="prenom" placeholder="Prénom" required>
             <input type="text" id="tel" name="tel" placeholder="Téléphone" required>
             <input type="date" id="date" name="date" value="${dateHtml}" min="${todayHtml}" required>
             <input type="number" id="nbPersonnes" name="nbPersonnes" placeholder="Nombre de personnes" value="${nbPersonnes}" min="0" max="${nbPlaceRestante}" required>
             <button type="button" id="button_form">Réserver</button>
-        </div>
+        </form>
         <span class="span_place"><span id="nbRestant">${nbPlaceRestante}</span> / ${reservation.NBRESMAX} places disponibles</span>`;
     flou.show(); // On affiche le formulaire
 
